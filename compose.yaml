@@ -14,8 +14,14 @@ services:
       - "127.0.0.1:8000:8000"
     environment:
       QDRANT_URL: http://qdrant:6333
+      HF_HOME: /models/cache
+    volumes:
+      - huggingface_cache:/models/cache
+      - ./data/sample:/app/data/sample:ro
     depends_on:
       - qdrant
+      
 
 volumes:
   qdrant_storage:
+  huggingface_cache:
